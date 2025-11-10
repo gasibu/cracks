@@ -22,6 +22,6 @@ jobs:
       env:
         CURRENT_ENV: ${{ secrets.CURRENT_ENV }}
       run: |
-        echo $CURRENT_ENV
+        echo "$CURRENT_ENV"
       #run: |
       #  docker build . --build-arg ENV=${{ secrets.CURRENT_ENV }} --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(date +%s)
