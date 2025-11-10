@@ -35,7 +35,4 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         annotations: ${{ steps.meta.outputs.annotations }}
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
         build-args: ENV=${{ secrets.CURRENT_ENV }}
-
