@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: echo ${{ ${{ secrets.PROD.CURRENT_ENV }} }}
+      run: echo ${{ secrets.PROD.CURRENT_ENV }}
       # run: docker build . \
       #   --build-arg ENV=${{ secrets.CURRENT_ENV }}\
       #   --file Dockerfile \
