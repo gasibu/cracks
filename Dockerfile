@@ -5,7 +5,6 @@ WORKDIR /app
 RUN --mount=type=secret,id=env \
     cat /run/secrets/env | base64 -d > .env
 
-RUN cat /run/secrets/env
 RUN cat .env
 
 COPY package.json ./
