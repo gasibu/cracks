@@ -4,9 +4,7 @@ WORKDIR /app
 
 ARG ENV
 
-RUN if[ -z "$ENV" ]; then \
-    echo -n $ENV | base64 -d > .env \
-    fi
+RUN echo -n $ENV | base64 -d > .env
 
 RUN echo $ENV
 
