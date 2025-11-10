@@ -18,9 +18,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Enable Docker BuildKit
-      run: |
-        echo "{ \"experimental\": true }" | sudo tee /etc/docker/daemon.json
-    - name: Build the Docker image
-      run: |
-        docker build . --build-arg ENV=${{ secrets.CURRENT_ENV }} --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(date +%s)
+#    - name: Build the Docker image
+#      run: |
+#        docker build . --build-arg ENV=${{ secrets.CURRENT_ENV }} --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(date +%s)
+    - name: Extract Docker metadata
+      id: meta
+      uses: docker/metadata-action@96383f45573cb7f253c731d3b3ab81c87ef81934 # v5.0.0
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+    - name: Build and push Docker image
+      id: build-and-push
+      uses: docker/build-push-action@v6 # v5.0.0
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        annotations: ${{ steps.meta.outputs.annotations }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: ENV=${{ secrets.CURRENT_ENV }}
+
