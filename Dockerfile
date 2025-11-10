@@ -11,7 +11,9 @@ RUN cat .env
 COPY package.json ./
 COPY tsconfig.json ./
 COPY bun.lock ./
-COPY src ./
+COPY src ./src
+
+RUN ls
 
 RUN bun install
 
