@@ -2,11 +2,11 @@ FROM oven/bun:canary-alpine
 
 WORKDIR /app
 
-ARG ENV
 
-RUN echo -n $ENV | base64 -d > .env
+RUN --mount=type=secret,id=env \
+    cat /run/secrets/env | base64 -d > .env
 
-RUN echo $ENV
+RUN cat .env
 
 COPY package.json ./
 COPY bun.lock ./

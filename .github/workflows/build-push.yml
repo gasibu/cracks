@@ -19,9 +19,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      env:
-        CURRENT_ENV: ${{ secrets.CURRENT_ENV }}
       run: |
-        echo $CURRENT_ENV
-      #run: |
-      #  docker build . --build-arg ENV=${{ secrets.CURRENT_ENV }} --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(date +%s)
+        docker build . --secret id=env,env=${{ secrets.CURRENT_ENV }} --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$(date +%s)
