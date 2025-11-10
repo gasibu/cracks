@@ -2,16 +2,18 @@ FROM oven/bun:canary-alpine
 
 WORKDIR /app
 
-
 RUN --mount=type=secret,id=env \
     cat /run/secrets/env | base64 -d > .env
 
+RUN cat /run/secrets/env
 RUN cat .env
 
 COPY package.json ./
 COPY bun.lock ./
 COPY src ./
 
-RUN bun install && bun run build
+RUN bun run build
 
-ENTRYPOINT ["top", "-b"]
+EXPOSE 3000
+
+CMD ["bun", "run", "start"]
