@@ -4,11 +4,12 @@ WORKDIR /app
 
 ARG ENV
 
-RUN cat $ENV | base64 -d > .env
+RUN echo -n $ENV | base64 -d > .env
 
 RUN cat .env
 
 COPY package.json ./
+COPY tsconfig.json ./
 COPY bun.lock ./
 COPY src ./
 
