@@ -1,14 +1,19 @@
 name = "cracks"
 account_id = "fb3169c7e1c10fe365e55468df4b8ac8"
-main = "dist/server.js"
+main = "./dist/server.js"
 compatibility_date = "2024-09-23"
 
 compatibility_flags = [
     "nodejs_compat",
     "enable_nodejs_http_modules",
     "enable_nodejs_http_server_modules",
-    "enable_nodejs_fs_module"
+    "enable_nodejs_fs_module",
+    "enable_nodejs_events_module"
 ]
+
+[build]
+command = "bun run build"
+upload_format = "modules"
 
 #[[containers]]
 #class_name = "cracks container"

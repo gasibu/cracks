@@ -4,17 +4,18 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "wrangler dev",
     "generate-types": "wrangler types",
-    "build": "tsc -p tsconfig.json",
+    "build": "esbuild src/server.ts --bundle --sourcemap --format=esm --outdir=dist --platform=node",
     "start": "node dist/server.js",
-    "start:prod": "npm run build && npm run start"
+    "start:prod": "bun run build && bun run start"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
     "express": "^5.1",
+    "express-edge": "^3.0.0",
     "iconv-lite": "^0.7.0"
   },
   "peerDependencies": {
