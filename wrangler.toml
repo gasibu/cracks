@@ -15,7 +15,7 @@ compatibility_flags = [
 [build]
 command = "bun run build"
 upload_format = "modules"
-
+minify = true
 #[[containers]]
 #class_name = "cracks container"
 #image = "ghcr.io/gasibu/cracks:main"
