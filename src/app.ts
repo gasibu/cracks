@@ -1,8 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express'
-import env from 'dotenv'
+// import env from 'dotenv'
 import healthRouter from './routes/health'
 
-env.config()
+// env.config()
 
 const app = express()
 
@@ -17,7 +17,7 @@ app.use('/health', healthRouter)
 app.use('/ready', (req: Request, res: Response) => {
   res.json({
     status: 'Ready!',
-    version: process.env.APP_VERSION
+    // version: process.env.APP_VERSION
   })
 })
 
