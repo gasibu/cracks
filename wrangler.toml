@@ -12,7 +12,7 @@ compatibility_flags = [
 ]
 
 [build]
-command = "bun run build"
+command = "bun install --production && bun run build"
 upload_format = "modules"
 minify = true
 #[[containers]]
