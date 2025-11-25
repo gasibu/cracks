@@ -22,5 +22,8 @@
     "@types/node": "^24.10",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.50.0"
   }
 }
